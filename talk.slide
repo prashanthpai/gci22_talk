@@ -1,0 +1,72 @@
+# Fantastic Microservices and How to Shut Them
+
+GopherCon India 2022, Pune
+28 Aug 2022
+
+Prashanth Pai
+Principal Engineer, Unacademy
+
+## Why shutown gracefully?
+
+- App lifecycle: autoscaling, deployment.
+- Dependency on infra orchestration (LB draining).
+- Data inconsistencies.
+- Poor user experience: pesky 5xx.
+- Not a trade-off. No excuse.
+
+.image images/poking-fire.png _ 200
+
+## Recipe and Ingredients
+
+**Recipe**
+
+1. Register with the OS to be notified when asked to quit.
+2. Propagate cancellation/stop signal to goroutines.
+3. Wait for goroutines to end.
+
+**Ingredients**
+
+1. signal.Notify(), signal.NotifyContext()
+2. cancel(), close(ch)
+3. wg.Wait()
+
+.image images/witch-cooking.png _ 125
+
+## man kill
+
+**Signals**
+
+- SIGTERM
+- SIGINT: Ctrl+C
+- SIGKILL: kill -9
+
+**Orchestrator (k8s, AWS ECS)**
+
+- Sends SIGTERM to your program.
+- Waits X seconds for program to gracefully exit.
+- If still running, kills forcibly with SIGKILL.
+
+.image images/messenger-showing.png _ 175
+
+## HTTP Server
+
+.code code/http.go  /START OMIT/,/END OMIT/
+
+## Producer-Consumer
+
+.code code/pc.go  /START OMIT/,/END OMIT/
+
+## Producer-Consumer
+
+.code code/pc.go  /END OMIT/,/END OMIT2/
+
+## Worker
+
+.code code/worker.go  /START OMIT/,/END OMIT/
+
+## Thank you
+
+.image images/power-to-the-masses.png _ 400
+
+# Like them gopher images ?
+# Thanks to: https://github.com/egonelbre/gophers
