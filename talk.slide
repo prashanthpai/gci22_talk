@@ -29,8 +29,9 @@ Principal Engineer, Unacademy
 1. signal.Notify(), signal.NotifyContext()
 2. cancel(), close(ch)
 3. wg.Wait()
+4. **NOT** runtime.Goexit()
 
-.image images/witch-cooking.png _ 125
+.image images/witch-cooking.png _ 100
 
 ## man kill
 
@@ -66,7 +67,11 @@ Principal Engineer, Unacademy
 
 ## Thank you
 
-.image images/power-to-the-masses.png _ 400
+Slides and code: github.com/prashanthpai/gci22_talk
+
+.image images/power-to-the-masses.png _ 350
+
+## Fin
 
 # Like them gopher images ?
 # Thanks to: https://github.com/egonelbre/gophers

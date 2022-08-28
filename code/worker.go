@@ -10,8 +10,8 @@ import (
 // START OMIT
 
 func main() {
-	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGTERM, syscall.SIGINT)
-	defer stop()
+	ctx, cancel := signal.NotifyContext(context.Background(), syscall.SIGTERM, syscall.SIGINT)
+	defer cancel()
 
 	wg := &sync.WaitGroup{}
 	wg.Add(10)
